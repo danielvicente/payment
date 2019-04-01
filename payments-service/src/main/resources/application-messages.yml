@@ -1,0 +1,4 @@
+http-message:
+  not-modified-client:
+    existing-payment: Pagamento já existente.
+    not-found-payment: Pagamento não encontrado.

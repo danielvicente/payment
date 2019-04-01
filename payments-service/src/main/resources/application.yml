@@ -1,0 +1,35 @@
+---
+spring:
+  application:
+    name: payment-service
+  profiles.active: local
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:stage_payments_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false;MODE=MYSQL;IGNORECASE=TRUE
+    username: sa
+    password:
+  flyway:
+    enabled: true
+    locations: classpath:sql
+    ignore-failed-future-migration: true
+    driver-class-name: org.h2.Driver
+    check-location: false
+    placeholderReplacement: true
+    placeholders:
+      onlyLocalStart: "/*"
+      onlyLocalEnd: "*/"
+      onlyMySQLStart: "/*"
+      onlyMySQLEnd: "*/"
+      onlyH2Start:
+      onlyH2End:
+      json.type: text
+  jpa:
+    hibernate:
+      naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQLDialect
+
+#logging.level.org.hibernate.SQL: DEBUG
+#spring.jpa.show-sql: true
+#spring.jpa.properties.hibernate.format_sql: true
+#logging.level.org.hibernate.type.descriptor.sql.BasicBinder: TRACE
